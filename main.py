@@ -16,11 +16,11 @@ class Mentor:
 
 class Lecturer(Mentor):
     def rate_lec(self, Lecturer, course, grade_lec):
-        if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
-            if course in student.grades_st:
-                student.grades_st[course] += [grade_st]
+        if isinstance(lecturer, Lecturer) and course in self.courses_attached and course:
+            if course in lecturer.grades_lec:
+                lecturer.grades_lec[course] += [grade_lec]
             else:
-                student.grades_st[course] = [grade_st]
+                lecturer.grades_lec[course] = [grade_lec]
         else:
             return 'Ошибка'
 
