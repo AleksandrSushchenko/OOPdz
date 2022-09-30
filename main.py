@@ -1,50 +1,33 @@
 class Student:
-    def __init__(self, name, surname, gender_st):
+    def __init__(self, name, surname, gender):
         self.name = name
         self.surname = surname
-        self.gender_st = gender_st
-        self.finished_courses = []
-        self.courses_in_progress = []
-        self.grades_st = {}
-
+        self.gender = gender
+        self.zakonch_kurs = []
+        self.kurs_v_processe = []
+        self.ocenka = {}
 class Mentor:
-    def __init__(self, name, surname,):
+    def __init__(self, name, surname):
         self.name = name
         self.surname = surname
-        self.courses_attached = []
-        self.grades_lec = {}
-
-class Lecturer(Mentor):
-    def rate_lec(self, Lecturer, course, grade_lec):
-        if isinstance(lecturer, Lecturer) and course in self.courses_attached and course:
-            if course in lecturer.grades_lec:
-                lecturer.grades_lec[course] += [grade_lec]
+        self.pricrepl_kurs = []
+    def post_ocenku_stud(self,student, kurs, ocenka):
+        if isinstance(student, Student) and kurs in self.pricrepl_kurs and kurs in student.kurs_v_processe:
+            if kurs in student.ocenka:
+                student.ocenka[kurs] += [ocenka]
             else:
-                lecturer.grades_lec[course] = [grade_lec]
+                student.ocenka[kurs] = [ocenka]
         else:
-            return 'Ошибка'
+            return 'error'
 
-class Reviewer(Mentor):
-    def rate_hw(self, student, course, grade_st):
-        if isinstance(student, Student) and course in self.courses_attached and course in student.courses_in_progress:
-            if course in student.grades_st:
-                student.grades_st[course] += [grade_st]
-            else:
-                student.grades_st[course] = [grade_st]
-        else:
-            return 'Ошибка'
+student_1 = Student('Pety','Ivanov','M')
+student_1.kurs_v_processe += ['Phyton']
 
-best_student = Student('Ruoy', 'Eman', 'your_gender')
-best_student.courses_in_progress += ['Python']
+prepod_1 = Mentor('Taisa','Orlova')
+prepod_1.pricrepl_kurs += ['Phyton']
 
-cool_mentor = Mentor('Some', 'Buddy')
-cool_mentor.courses_attached += ['Python']
+prepod_1.post_ocenku_stud(student_1, 'Phyton', 8)
+prepod_1.post_ocenku_stud(student_1, 'Phyton', 7)
+prepod_1.post_ocenku_stud(student_1, 'Phyton', 9)
 
-cool_Reviewer = Reviewer ('Вася', 'Пупкин')
-cool_Reviewer.courses_attached += ['Python']
-
-cool_Reviewer.rate_hw(best_student, 'Python', 10)
-cool_Reviewer.rate_hw(best_student, 'Python', 10)
-cool_Reviewer.rate_hw(best_student, 'Python', 10)
-
-print(best_student.grades_st)
+print(student_1.ocenka)
