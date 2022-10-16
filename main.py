@@ -102,22 +102,22 @@ prover_1.pricrepl_kurs += ['Phyton']
 prepod_1 = Reviewer('Татьяна', 'Петровна')
 prepod_1.pricrepl_kurs += ['Phyton']
 
-student_1.post_ocenku_lectoru(lector_1, 'Phyton', 10)
-student_1.post_ocenku_lectoru(lector_1, 'Phyton', 10)
-student_1.post_ocenku_lectoru(lector_1, 'Phyton', 10)
+student_1.post_ocenku_lectoru(lector_1, 'Phyton', 8)
+student_1.post_ocenku_lectoru(lector_1, 'Phyton', 8)
+student_1.post_ocenku_lectoru(lector_1, 'Phyton', 8)
 
-student_1.post_ocenku_lectoru(lector_2, 'Phyton', 9)
 student_1.post_ocenku_lectoru(lector_2, 'Phyton', 8)
-student_1.post_ocenku_lectoru(lector_2, 'Phyton', 7)
+student_1.post_ocenku_lectoru(lector_2, 'Phyton', 8)
+student_1.post_ocenku_lectoru(lector_2, 'Phyton', 8)
 
 
-prepod_1.post_ocenku_stud(student_1, 'Phyton', 8)
 prepod_1.post_ocenku_stud(student_1, 'Phyton', 7)
-prepod_1.post_ocenku_stud(student_1, 'Phyton', 9)
+prepod_1.post_ocenku_stud(student_1, 'Phyton', 7)
+prepod_1.post_ocenku_stud(student_1, 'Phyton', 7)
 
-prepod_1.post_ocenku_stud(student_2, 'Phyton', 10)
-prepod_1.post_ocenku_stud(student_2, 'Phyton', 10)
-prepod_1.post_ocenku_stud(student_2, 'Phyton', 10)
+prepod_1.post_ocenku_stud(student_2, 'Phyton', 7)
+prepod_1.post_ocenku_stud(student_2, 'Phyton', 7)
+prepod_1.post_ocenku_stud(student_2, 'Phyton', 7)
 
 
 print(prover_1)
@@ -127,3 +127,32 @@ print(student_1.sred_dz > student_2.sred_dz)
 print(lector_1)
 print(lector_2)
 print(lector_1.sred_ph > lector_2.sred_ph)
+
+all_student = [student_1, student_2]
+all_lector = [lector_1, lector_2]
+
+
+def all_sred_stud(spisok_stud, kurs):
+    spis_ocenok_stud = []
+    for student in spisok_stud:
+        if kurs in student.kurs_v_processe:
+            spis_ocenok_stud += student.ocenka[kurs]
+        else:
+            return 'error'
+    all_ocenka_stud = sum(spis_ocenok_stud)/len(spis_ocenok_stud)
+    return all_ocenka_stud
+
+
+def all_sred_lector(spisok_lektor, kurs):
+    spis_ocenok_lector = []
+    for lector in spisok_lektor:
+        if kurs in lector.ocenka_lectoru:
+            spis_ocenok_lector += lector.ocenka_lectoru[kurs]
+        else:
+            return 'error'
+    all_ocenka_lector = sum(spis_ocenok_lector)/len(spis_ocenok_lector)
+    return all_ocenka_lector
+
+
+print(f"Среднии бал всех студентов по курсу Python: {all_sred_stud(all_student, 'Phyton')}")
+print(f"Среднии бал всех лекторов по курсу Python: {all_sred_lector(all_lector, 'Phyton')}")
